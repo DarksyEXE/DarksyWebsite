@@ -1,0 +1,111 @@
+<head>
+    <style>
+        button{
+            height:24px;
+            vertical-align:top;
+        }
+
+        nav {
+            text-align:center;
+        }
+
+        img {
+            max-height:300px;
+        }
+
+        h2 {
+            font-family:verdana;
+        }
+    </style>
+</head>
+<center style="margin-top:170px; font-family:verdana; font-size:12px;">
+    <h2>hi, i'm darksy.</h2>
+
+    <img src="jello_femboy_gif.gif">
+    <br>
+    <br>
+    i'm a femboy asmr dealer. (linktree is a buggy POS)<br>
+    <br>
+    have a wonderful day :3
+    <br>
+    <br>
+</center>
+
+<div id="navbox">
+    <nav>
+        <button id="dp" class="urlbtn">♡ Discord / Patreon ♡</button>
+        <button id="yt" class="urlbtn">♡ YouTube ♡</button>
+        <button id="tv" class="urlbtn">♡ Twitch ♡</button>
+        <button id="kk" class="urlbtn">♡ Kick ♡</button>
+        <button id="xt" class="urlbtn">♡ X/Twitter ♡</button>
+        <button id="tt" class="urlbtn">♡ TikTok ♡</button>
+        <button id="rt" class="urlbtn">♡ Reddit ♡</button>
+        <button id="th" class="urlbtn">♡ support me with bideo supplies directly~ ♡</button>
+    </nav>
+</div>
+
+<script>
+// AUTO DARKMODE
+const check_increment = 600000;
+const sunsetHours = [17, 17, 18, 19, 20, 20, 20, 19, 19, 18, 17, 17];
+const now = new Date();
+const curHour = now.getHours();
+const month = now.getMonth();
+
+function check_darkmode() {
+    switch(curHour) {
+    case 0: case 1: case 2: case 3: case 4: case 5: load_darkmode_css(); break; //12am-5am -> always darkmode
+    default:
+        switch (Math.sign(curHour - sunsetHours[month])) {
+            case 1: case 0:
+                load_darkmode();
+            case -1:
+                remove_darkmode();
+            break;
+        }
+    }
+}
+
+function load_darkmode() {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'darkmode.css'; // path to your dark mode CSS
+    link.id = 'darkmode-css';
+    document.head.appendChild(link);
+}
+
+function remove_darkmode() {
+    const link = document.getElementById('darkmode-css');
+    if (link) {
+        link.remove();
+    }
+}
+
+setInterval(check_darkmode,check_increment);
+
+
+
+
+// BUTTONS
+
+let urlbtns = document.getElementsByClassName('urlbtn');
+
+for (let i=0; i < urlbtns.length; i++) {
+    urlbtns[i].addEventListener('click',function(){go2url(this.id);});
+}
+
+function go2url(id) {
+    let a;
+    switch(id) {
+        case 'dp': a = 'https://patreon.com/darksy'; break;
+        case 'tv': a = 'https://twitch.tv/darksyfemboy'; break;
+        case 'kk': a = 'https://kick.com/darksyfemboy'; break;
+        case 'yt': a = 'https://www.youtube.com/@DarksyASMR'; break;
+        case 'xt': a = 'https://x.com/DarksyFemboy'; break;
+        case 'tt': a = 'https://www.tiktok.com/@darksyASMR'; break;
+        case 'rt': a = 'https://www.reddit.com/user/darksyYX/'; break;
+        case 'th': a = 'https://throne.com/darksyfemboy'; break;
+    }
+    window.open(a,'_blank');
+}
+</script>
